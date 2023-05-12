@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: PersistentVolume 
+metadata:
+  name: nfs-pv-orderbook
+spec:
+  # 设置容量
+  capacity:
+    storage: 40Gi
+  # 访问模式
+  accessModes:
+    # 该卷能够以读写模式被多个节点同时加载
+    - ReadWriteMany
+  # 回收策略，这里是基础擦除 `rm-rf/thevolume/*`
+  persistentVolumeReclaimPolicy: Recycle
+  nfs:
+    # NFS 服务端配置的路径
+    path: "/root/Data"
+    # NFS 服务端地址
+    server: 172.29.239.21
+    readOnly: false

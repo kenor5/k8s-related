@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Config
+users:
+- name: kubelet
+  user: {}
+clusters:
+- name: kubemark
+  cluster:
+    server: http://172.29.239.20:6443 #替换成你自己的APIServer地址
+contexts:
+- context:
+    cluster: kubemark
+    user: kubelet
+  name: kubemark-context
+current-context: kubemark-context
